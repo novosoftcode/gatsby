@@ -9,7 +9,7 @@ const MAX_BACKOFF_MILLISECONDS = 60000
 export function createGraphqlClient(
   options: IShopifyPluginOptions
 ): IGraphQLClient {
-  const url = `https://${options.storeUrl}/admin/api/2021-07/graphql.json`
+  const url = `https://${options.storeUrl}/api/2022-07/graphql.json`
 
   async function graphqlFetch<T>(
     query: string,
@@ -19,8 +19,8 @@ export function createGraphqlClient(
     const response = await fetch(url, {
       method: `POST`,
       headers: {
-        "Content-Type": `application/json`,
-        "X-Shopify-Access-Token": options.password,
+        "Content-Type": `application/graphql`,
+        "X-Shopify-Storefront-Access-Token": options.password,
       },
       body: JSON.stringify({
         query,
